@@ -7,5 +7,4 @@ export const TechStack = lazy(() => import('./TechStack'));
 export const Skills = lazy(() => import('./Skills'));
 export const Projects = lazy(() => import('./Projects'));
 export const AIEngineering = lazy(() => import('./AIEngineering'));
-export const AIPlayground = lazy(() => import('./AIPlayground'));
 export const Contact = lazy(() => import('./Contact'));
