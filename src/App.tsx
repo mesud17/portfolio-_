@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { AppLayout } from '@/layouts/AppLayout';
-import { Hero, About, TechStack, Projects, AIEngineering, AIPlayground, Contact } from '@/sections';
+import { Hero, About, TechStack, Projects, AIEngineering, Contact } from '@/sections';
 
 /**
  * Main application entry shell.
@@ -30,7 +30,6 @@ function App() {
         <TechStack />
         <Projects />
         <AIEngineering />
-        <AIPlayground />
         <Contact />
       </Suspense>
     </AppLayout>

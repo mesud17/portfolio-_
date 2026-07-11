@@ -324,35 +324,8 @@ export function AppLayout({ children }: AppLayoutProps) {
         {children}
       </main>
 
-      {/* Unified Footer */}
-      <footer className="border-t border-white/[0.04] bg-[#0e0e12] py-12 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <svg className="w-4 h-4 text-orange-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="5" r="2" fill="currentColor" />
-              <circle cx="6" cy="17" r="2" fill="currentColor" />
-              <circle cx="18" cy="17" r="2" fill="currentColor" />
-              <line x1="12" y1="7" x2="6.5" y2="15" />
-              <line x1="12" y1="7" x2="17.5" y2="15" />
-              <line x1="8" y1="17" x2="16" y2="17" />
-            </svg>
-            <span className="font-display font-bold text-sm tracking-tight text-text-secondary">
-              Mesud
-            </span>
-          </div>
-          <p className="text-xs text-text-muted font-mono">
-            &copy; {new Date().getFullYear()} Mesud. Built with React 19, R3F & Tailwind CSS v4.
-          </p>
-          <div className="flex items-center gap-4 text-xs font-mono text-text-secondary">
-            <a href="https://github.com" className="hover:text-orange-accent transition-colors">GITHUB</a>
-            <span className="text-[#16161d]">/</span>
-            <a href="https://linkedin.com" className="hover:text-orange-accent transition-colors">LINKEDIN</a>
-            <span className="text-[#16161d]">/</span>
-            <a href="#" className="hover:text-orange-accent transition-colors">RESUME</a>
-          </div>
-        </div>
-      </footer>
     </div>
+
   );
 }
 

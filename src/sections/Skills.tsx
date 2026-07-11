@@ -118,6 +118,8 @@ function TechCard({ tech }: TechCardProps) {
 export default function Skills() {
   return (
     <SectionContainer id="skills" className="border-t border-border-primary">
+
+
       <motion.div
         variants={containerVariants}
         initial="hidden"

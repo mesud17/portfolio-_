@@ -414,14 +414,6 @@ export default function Contact() {
               Thanks for visiting.
             </p>
 
-            <div className="flex flex-col items-center gap-1 font-sans">
-              <p className="text-xs text-text-secondary">
-                Designed & Developed by <span className="text-orange-accent font-semibold">Mesud</span>
-              </p>
-              <p className="text-[11px] text-text-muted font-mono tracking-wider">
-                2026 &copy; All Rights Reserved
-              </p>
-            </div>
 
             {/* Social profiles in footer */}
             <div className="flex items-center gap-3 pt-2">
