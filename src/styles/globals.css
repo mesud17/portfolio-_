@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Color Palette */
+  --color-bg-primary: #08080a;
+  --color-bg-secondary: #0e0e12;
+  --color-bg-tertiary: #16161d;
+  
+  --color-orange-accent: #ff6000;
+  --color-orange-accent-hover: #ff781f;
+  --color-orange-accent-dim: rgba(255, 96, 0, 0.1);
+  --color-orange-accent-glow: rgba(255, 96, 0, 0.35);
+
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+
+  --color-border-primary: rgba(255, 255, 255, 0.03);
+  --color-border-secondary: rgba(255, 255, 255, 0.08);
+  --color-border-orange: rgba(255, 96, 0, 0.15);
+
+  /* Typography Scale */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  /* Shadows */
+  --shadow-premium-glow: 0 0 35px rgba(255, 96, 0, 0.12);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 24px 0 rgba(0, 0, 0, 0.45);
+
+  /* Border Radius */
+  --radius-premium-sm: 4px;
+  --radius-premium-md: 8px;
+  --radius-premium-lg: 16px;
+  --radius-premium-xl: 24px;
+  --radius-premium-full: 9999px;
+
+  /* Transitions & Animation Easing */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Z-Index System */
+  --z-bg: -10;
+  --z-base: 0;
+  --z-card: 10;
+  --z-sticky-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 500;
+  --z-tooltip: 1000;
+}
+
+@utility glass {
+  background: rgba(14, 14, 18, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-orange {
+  background: rgba(255, 96, 0, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 96, 0, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(255, 96, 0, 0.03);
+}
+
+@utility blueprint-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+}
+
+@utility blueprint-grid-sub {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
+  background-size: 10px 10px;
+  background-position: center center;
+}
+
+@utility radial-glow-hero {
+  background: radial-gradient(circle at 75% 50%, rgba(255, 96, 0, 0.05) 0%, transparent 60%);
+}
+
+@utility text-gradient-orange {
+  background: linear-gradient(135deg, #ff8a3d 0%, #ff6000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-gray {
+  background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes noise-animation {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(-2%, 1%); }
+  30% { transform: translate(1%, -2%); }
+  40% { transform: translate(-1%, 2%); }
+  50% { transform: translate(-2%, 1%); }
+  60% { transform: translate(1%, 0%); }
+  70% { transform: translate(0%, 1%); }
+  80% { transform: translate(1%, -1%); }
+  90% { transform: translate(-1%, 1%); }
+}
+
+@keyframes typewriter-blink {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.noise-overlay-container {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 1;
+  animation: noise-animation 8s steps(10) infinite;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  animation: typewriter-blink 0.8s step-end infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-premium-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-orange-accent);
+  }
+
+  /* Custom Selection */
+  ::selection {
+    background: var(--color-orange-accent-dim);
+    color: var(--color-orange-accent);
+  }
+
+  /* Keyboard Focus Outline */
+  :focus-visible {
+    outline: 2px solid var(--color-orange-accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-premium-sm);
+  }
+
+  /* Custom Heading Styles for Space Grotesk display */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+    
+    *, ::before, ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+  }
+}
