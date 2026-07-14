@@ -6,7 +6,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'tech-stack',     label: 'Stack',      href: '#tech-stack' },
   { id: 'projects',       label: 'Work',       href: '#projects' },
   { id: 'ai-engineering', label: 'AI',         href: '#ai-engineering' },
-  { id: 'playground',     label: 'AI Lab',     href: '#playground' },
   { id: 'contact',        label: 'Contact',    href: '#contact' },
 ];
 

@@ -179,14 +179,14 @@ export function Hero() {
           <motion.div variants={itemVariants}>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-mono font-medium text-orange-accent bg-orange-accent-dim border border-border-orange/20 rounded-premium-full uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-accent animate-pulse" />
-              Ecosystem Initialized
+              Available for opportunities
             </span>
           </motion.div>
 
           {/* Primary Name Header */}
           <motion.div variants={itemVariants} className="space-y-1">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-display">
-              Mesud
+              Mesud Ali
             </h1>
             <h2 className="text-xl md:text-2xl font-bold font-display text-gradient-gray">
               AI-Powered Full-Stack Engineer

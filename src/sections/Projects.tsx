@@ -52,45 +52,43 @@ const PROJECTS: Project[] = [
     title: 'AI Forum',
     description:
       'A community discussion platform powered by AI — threads get smart summaries, replies are enriched with LLM suggestions, and the feed is ranked by contextual relevance.',
-    image: '/project-ai-forum.png',
+    image: '/forum-image.png',
     techBadges: ['React', 'Node.js', 'Express.js', 'MySQL', 'Google Gemini'],
     featureBadges: [
       { label: 'AI-Powered', accent: true },
       { label: 'Full-Stack' },
       { label: 'REST API' },
     ],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
+    liveUrl: 'https://ai-integrated-evangadi-forum.vercel.app/',
+    githubUrl: 'https://github.com/mesud17/AI-Integrated-Evangadi-Forum',
   },
   {
     id: 'ai-chatgpt-clone',
     title: 'AI ChatGPT Clone',
     description:
       'A production-grade conversational AI interface with streaming responses, multi-session history, and a fully responsive glassmorphism UI built on the OpenAI API.',
-    image: '/project-chatgpt-clone.png',
+    image: '/ChatGPT-image.png',
     techBadges: ['React', 'TypeScript', 'Tailwind CSS', 'OpenAI', 'Node.js'],
     featureBadges: [
-      { label: 'OpenAI API', accent: true },
+      { label: 'Gemini API', accent: true },
       { label: 'Streaming' },
-      { label: 'Dark UI' },
     ],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
+    liveUrl: 'https://gpt-clone-mu-five.vercel.app/',
+    githubUrl: 'https://github.com/mesud17/GPT-clone',
   },
   {
     id: 'netflix-clone',
     title: 'Netflix Clone',
     description:
       'A pixel-faithful Netflix frontend clone with dynamic movie browsing via TMDB, category rows, a hero banner, and smooth responsive layouts across all screen sizes.',
-    image: '/project-netflix-clone.png',
+    image: '/netflix-image.png',
     techBadges: ['React', 'JavaScript', 'Tailwind CSS', 'REST API'],
     featureBadges: [
       { label: 'TMDB API', accent: true },
       { label: 'Responsive' },
-      { label: 'Animation' },
     ],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
+    liveUrl: 'https://movie-clone-rmdq0k1my-mesud17s-projects.vercel.app/',
+    githubUrl: 'https://github.com/mesud17/Netflix-clone',
   },
 ];
 

@@ -78,7 +78,7 @@ export default function About() {
             
             {/* Portrait Image */}
             <img 
-              src="/mesud-portrait.png" 
+              src="/profile-image.jpg" 
               alt="Mesud - Professional Portrait" 
               className="w-full h-full object-cover rounded-xl md:rounded-premium-lg 
                 grayscale group-hover:grayscale-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] 

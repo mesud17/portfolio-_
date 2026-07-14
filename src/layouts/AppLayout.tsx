@@ -163,7 +163,6 @@ export function AppLayout({ children }: AppLayoutProps) {
             </svg>
           </div>
           <span className="font-display font-bold tracking-tight text-white group-hover:text-gradient-orange transition-all duration-300 text-lg">
-            Mesud
           </span>
         </a>
 
