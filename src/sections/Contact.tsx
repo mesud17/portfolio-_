@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
 import { SectionContainer } from '@/layouts/SectionContainer';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 // ─── Inline SVG Icons for Visual Continuity ──────────────────────────────────
 const MailIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -133,28 +143,55 @@ function ContactCard({ icon, label, value, href }: ContactCardProps) {
 
 // ─── Contact Form Component ──────────────────────────────────────────────────
 function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) return;
-
+  const onSubmit = async (data: ContactFormData) => {
     setStatus('submitting');
-    // Simulate API network request
-    setTimeout(() => {
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS credentials are not configured in environment variables.');
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          from_name: data.name,
+          from_email: data.email,
+        },
+        publicKey
+      );
+
       setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+      toast.success("Message sent successfully! I'll get back to you soon.");
+      reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus('idle');
+      toast.error('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -199,7 +236,7 @@ function ContactForm() {
         </motion.div>
       ) : (
         /* Contact Form */
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5" aria-label="Contact form">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5" aria-label="Contact form" noValidate>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="contact-name" className="text-xs font-semibold font-mono uppercase tracking-widest text-text-muted">
@@ -208,20 +245,27 @@ function ContactForm() {
               <input
                 id="contact-name"
                 type="text"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
+                disabled={status === 'submitting'}
+                aria-invalid={errors.name ? 'true' : 'false'}
                 placeholder="John Doe"
-                className="w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
+                className={`w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
                   bg-[rgba(14,14,18,0.55)] backdrop-blur-sm
-                  border border-[rgba(255,255,255,0.07)]
-                  placeholder:text-text-muted
+                  border placeholder:text-text-muted
                   outline-none
                   focus:border-orange-accent focus:shadow-[0_0_0_2px_rgba(255,96,0,0.12)]
                   hover:border-[rgba(255,255,255,0.12)]
-                  transition-all duration-250 font-sans"
+                  transition-all duration-250 font-sans ${
+                    errors.name 
+                      ? 'border-red-500/50 focus:border-red-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.12)]' 
+                      : 'border-[rgba(255,255,255,0.07)]'
+                  }`}
+                {...register('name', { required: 'Full name is required' })}
               />
+              {errors.name && (
+                <span className="text-xs text-red-500 font-mono mt-0.5" role="alert">
+                  {errors.name.message}
+                </span>
+              )}
             </div>
             <div className="flex flex-col gap-1.5">
               <label htmlFor="contact-email" className="text-xs font-semibold font-mono uppercase tracking-widest text-text-muted">
@@ -230,20 +274,33 @@ function ContactForm() {
               <input
                 id="contact-email"
                 type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
+                disabled={status === 'submitting'}
+                aria-invalid={errors.email ? 'true' : 'false'}
                 placeholder="john@example.com"
-                className="w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
+                className={`w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
                   bg-[rgba(14,14,18,0.55)] backdrop-blur-sm
-                  border border-[rgba(255,255,255,0.07)]
-                  placeholder:text-text-muted
+                  border placeholder:text-text-muted
                   outline-none
                   focus:border-orange-accent focus:shadow-[0_0_0_2px_rgba(255,96,0,0.12)]
                   hover:border-[rgba(255,255,255,0.12)]
-                  transition-all duration-250 font-sans"
+                  transition-all duration-250 font-sans ${
+                    errors.email 
+                      ? 'border-red-500/50 focus:border-red-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.12)]' 
+                      : 'border-[rgba(255,255,255,0.07)]'
+                  }`}
+                {...register('email', {
+                  required: 'Email address is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address',
+                  },
+                })}
               />
+              {errors.email && (
+                <span className="text-xs text-red-500 font-mono mt-0.5" role="alert">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
@@ -253,20 +310,27 @@ function ContactForm() {
             <input
               id="contact-subject"
               type="text"
-              name="subject"
-              required
-              value={formData.subject}
-              onChange={handleChange}
+              disabled={status === 'submitting'}
+              aria-invalid={errors.subject ? 'true' : 'false'}
               placeholder="Project collaboration, job opportunity…"
-              className="w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
+              className={`w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
                 bg-[rgba(14,14,18,0.55)] backdrop-blur-sm
-                border border-[rgba(255,255,255,0.07)]
-                placeholder:text-text-muted
+                border placeholder:text-text-muted
                 outline-none
                 focus:border-orange-accent focus:shadow-[0_0_0_2px_rgba(255,96,0,0.12)]
                 hover:border-[rgba(255,255,255,0.12)]
-                transition-all duration-250 font-sans"
+                transition-all duration-250 font-sans ${
+                  errors.subject 
+                    ? 'border-red-500/50 focus:border-red-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.12)]' 
+                    : 'border-[rgba(255,255,255,0.07)]'
+                }`}
+              {...register('subject', { required: 'Subject is required' })}
             />
+            {errors.subject && (
+              <span className="text-xs text-red-500 font-mono mt-0.5" role="alert">
+                {errors.subject.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col gap-1.5">
             <label htmlFor="contact-message" className="text-xs font-semibold font-mono uppercase tracking-widest text-text-muted">
@@ -274,21 +338,28 @@ function ContactForm() {
             </label>
             <textarea
               id="contact-message"
-              name="message"
-              required
+              disabled={status === 'submitting'}
+              aria-invalid={errors.message ? 'true' : 'false'}
               rows={5}
-              value={formData.message}
-              onChange={handleChange}
               placeholder="Tell me about your project, idea, or question…"
-              className="w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
+              className={`w-full rounded-premium-md px-4 py-3 text-sm text-text-primary
                 bg-[rgba(14,14,18,0.55)] backdrop-blur-sm
-                border border-[rgba(255,255,255,0.07)]
-                placeholder:text-text-muted
+                border placeholder:text-text-muted
                 outline-none resize-none
                 focus:border-orange-accent focus:shadow-[0_0_0_2px_rgba(255,96,0,0.12)]
                 hover:border-[rgba(255,255,255,0.12)]
-                transition-all duration-250 font-sans"
+                transition-all duration-250 font-sans ${
+                  errors.message 
+                    ? 'border-red-500/50 focus:border-red-500 focus:shadow-[0_0_0_2px_rgba(239,68,68,0.12)]' 
+                    : 'border-[rgba(255,255,255,0.07)]'
+                }`}
+              {...register('message', { required: 'Message is required' })}
             />
+            {errors.message && (
+              <span className="text-xs text-red-500 font-mono mt-0.5" role="alert">
+                {errors.message.message}
+              </span>
+            )}
           </div>
 
           <motion.button
@@ -376,20 +447,20 @@ export default function Contact() {
             <ContactCard
               icon={<MailIcon className="w-5 h-5" aria-hidden="true" />}
               label="Email"
-              value="mesud@example.com"
-              href="mailto:mesud@example.com"
+              value="mesud3818@gmail.com"
+              href="mailto:mesud3818@gmail.com"
             />
             <ContactCard
               icon={<GithubIcon className="w-5 h-5" aria-hidden="true" />}
               label="GitHub"
-              value="github.com/yourusername"
-              href="https://github.com/yourusername"
+              value="github.com/mesud17"
+              href="https://github.com/mesud17"
             />
             <ContactCard
               icon={<LinkedinIcon className="w-5 h-5" aria-hidden="true" />}
               label="LinkedIn"
-              value="linkedin.com/in/yourprofile"
-              href="https://linkedin.com/in/yourprofile"
+              value="linkedin.com/in/mesud-ali-a823ba409"
+              href="https://www.linkedin.com/in/mesud-ali-a823ba409"
             />
             <ContactCard
               icon={<MapPinIcon className="w-5 h-5" aria-hidden="true" />}

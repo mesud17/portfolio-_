@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { AppLayout } from '@/layouts/AppLayout';
 import { Hero, About, TechStack, Projects, AIEngineering, Contact } from '@/sections';
+import { Toaster } from 'sonner';
 
 /**
  * Main application entry shell.
@@ -32,6 +33,7 @@ function App() {
         <AIEngineering />
         <Contact />
       </Suspense>
+      <Toaster position="bottom-right" richColors />
     </AppLayout>
   );
 }
