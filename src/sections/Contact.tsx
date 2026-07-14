@@ -489,7 +489,7 @@ export default function Contact() {
             {/* Social profiles in footer */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/mesud17"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-premium-md border border-[rgba(255,255,255,0.07)]
@@ -503,7 +503,7 @@ export default function Contact() {
                 <GithubIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/mesud-ali-a823ba409"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-premium-md border border-[rgba(255,255,255,0.07)]

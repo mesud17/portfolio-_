@@ -236,7 +236,7 @@ export function Hero() {
           {/* Social Links Panel */}
           <motion.div variants={itemVariants} className="flex items-center gap-3 pt-2">
             <a
-              href="https://github.com"
+              href="https://github.com/mesud17"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-premium-md border border-border-secondary bg-[#0e0e12]/30 text-text-secondary hover:text-orange-accent hover:border-border-orange/20 glass hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent"
@@ -245,7 +245,7 @@ export function Hero() {
               <GithubIcon className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mesud-ali-a823ba409"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-premium-md border border-border-secondary bg-[#0e0e12]/30 text-text-secondary hover:text-orange-accent hover:border-border-orange/20 glass hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent"

@@ -288,7 +288,7 @@ export function AppLayout({ children }: AppLayoutProps) {
               {/* Mobile Socials */}
               <div className="flex items-center gap-4 pt-6 border-t border-white/[0.04]" aria-label="Social profiles">
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/mesud17" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="p-2.5 rounded-premium-md border border-border-secondary bg-[#0e0e12]/40 text-text-secondary hover:text-orange-accent hover:border-orange-accent/30 glass transition-colors duration-300"
@@ -297,7 +297,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                   <GithubIcon className="w-4 h-4" />
                 </a>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/in/mesud-ali-a823ba409"
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="p-2.5 rounded-premium-md border border-border-secondary bg-[#0e0e12]/40 text-text-secondary hover:text-orange-accent hover:border-orange-accent/30 glass transition-colors duration-300"
@@ -306,7 +306,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
                 <a 
-                  href="mailto:mesud@example.com" 
+                  href="mailto:mesud3818@gmail.com" 
                   className="p-2.5 rounded-premium-md border border-border-secondary bg-[#0e0e12]/40 text-text-secondary hover:text-orange-accent hover:border-orange-accent/30 glass transition-colors duration-300"
                   aria-label="Send Email"
                 >
